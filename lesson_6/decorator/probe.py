@@ -56,10 +56,27 @@ def log(func):
         kwargs_rep = [f"{k}={v!r}" for k, v in kwargs.items()]
         sig = ", ".join(args_rep + kwargs_rep)
         val = func(*args, **kwargs)
-        val = val.upper() + "!"
+        LOGGER.info(f'Обращение к функции {func.__name__}, с аргументами {sig}')
         return val
     return wrapper
+
 @log
 def hello(name):
     "Hello from the other side."
+    print(f"Hello {name}")
     return f"Hello {name}"
+
+@log
+def bye(*args, **kwargs):
+    for item in args:
+        print(f"Hello {item}")
+    for key, val in kwargs.items():
+        print(f"Hello {key} bye {val}")
+
+a =['andry', 'kevin', 'goblin']
+b = {'ODKB':'NATO', 'Russia':'Europa','China':'West'}
+bye(*a,**b)
+
+
+
+hello('name')

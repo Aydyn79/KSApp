@@ -21,3 +21,15 @@
 2022-03-22 11:15:36,883 INFO decor.py We need to go deeper
 2022-03-22 11:15:37,302 INFO decor.py We need to go deeper
 2022-03-22 11:15:40,572 INFO decor.py We need to go deeper
+2022-03-23 17:14:32,922 INFO probe.py Обращение к функции hello, с аргументами 'name'
+2022-03-23 17:15:16,270 INFO probe.py Обращение к функции hello, с аргументами 'name'
+2022-03-23 17:37:08,686 INFO probe.py Обращение к функции bye, с аргументами ['andry', 'kevin', 'goblin'], {'ODKB': 'NATO', 'Russia': 'Europa', 'China': 'West'}
+2022-03-23 17:37:08,686 INFO probe.py Обращение к функции hello, с аргументами 'name'
+2022-03-23 17:38:03,153 INFO probe.py Обращение к функции bye, с аргументами 'andry', 'kevin', 'goblin', {'ODKB': 'NATO', 'Russia': 'Europa', 'China': 'West'}
+2022-03-23 17:38:03,153 INFO probe.py Обращение к функции hello, с аргументами 'name'
+2022-03-23 17:52:25,188 INFO probe.py Обращение к функции bye, с аргументами ['andry', 'kevin', 'goblin'], {'ODKB': 'NATO', 'Russia': 'Europa', 'China': 'West'}
+2022-03-23 17:52:25,188 INFO probe.py Обращение к функции hello, с аргументами 'name'
+2022-03-23 17:52:50,955 INFO probe.py Обращение к функции bye, с аргументами 'andry', 'kevin', 'goblin', {'ODKB': 'NATO', 'Russia': 'Europa', 'China': 'West'}
+2022-03-23 17:52:50,955 INFO probe.py Обращение к функции hello, с аргументами 'name'
+2022-03-23 17:53:39,093 INFO probe.py Обращение к функции bye, с аргументами 'andry', 'kevin', 'goblin', ODKB='NATO', Russia='Europa', China='West'
+2022-03-23 17:53:39,093 INFO probe.py Обращение к функции hello, с аргументами 'name'
