@@ -1,7 +1,13 @@
 """Утилиты"""
 
 import json
+import re
+import sys
+
+sys.path.append('../')
+
 from common.variables import MAX_PACKAGE_LENGTH, ENCODING
+from logs.config_client_log import LOGGER
 
 def get_message(client):
     '''
@@ -29,7 +35,23 @@ def send_message(sock, message):
     :param message:
     :return:
     '''
-
+    if not isinstance(message, dict):
+        raise TypeError
     js_message = json.dumps(message)
     encoded_message = js_message.encode(ENCODING)
     sock.send(encoded_message)
+
+def valid_ip(address):
+    '''Валидация IP адреса'''
+    try:
+        m = re.match(r"^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$", address)
+        if bool(m) and all(map(lambda n: 0 <= int(n) <= 255, m.groups())):
+            return True
+        else: raise TypeError
+    except TypeError:
+        if address == 'localhost':
+            return True
+        else:
+            LOGGER.critical(f'Неверный формат введенного IP адреса {address}', exc_info=True)
+            return False
+

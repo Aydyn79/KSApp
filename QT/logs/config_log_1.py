@@ -3,20 +3,21 @@
 import sys
 import os
 import logging
-from common.variables import LOGGING_LEVEL
 sys.path.append('../')
+from common.variables import LOGGING_LEVEL
+
 
 # создаём формировщик логов (formatter):
-CLIENT_FORMATTER = logging.Formatter('%(asctime)s %(levelname)s %(filename)s %(message)s')
+CLIENT_FORMATTER = logging.Formatter('%(asctime)s %(levelname)-8s %(filename)-11s %(message)s', "%d-%m-%Y %H:%M:%S")
 
 # Подготовка имени файла для логирования
 PATH = os.path.dirname(os.path.abspath(__file__))
-PATH = os.path.join(PATH, 'client.log')
+PATH = os.path.join(PATH, 'case_1.log')
 
 # создаём потоки вывода логов
 STREAM_HANDLER = logging.StreamHandler(sys.stderr)
 STREAM_HANDLER.setFormatter(CLIENT_FORMATTER)
-STREAM_HANDLER.setLevel(logging.ERROR)
+STREAM_HANDLER.setLevel(logging.INFO)
 LOG_FILE = logging.FileHandler(PATH, encoding='utf8')
 LOG_FILE.setFormatter(CLIENT_FORMATTER)
 
