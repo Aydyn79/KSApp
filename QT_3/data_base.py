@@ -127,16 +127,26 @@ def users_list():
 
 
 # Функция возвращает список активных пользователей
-def active_users_list():
+def active_users_list(username=None):
     # Запрашиваем соединение таблиц и собираем кортежи имя, адрес, порт, время.
-    query = sess.query(
-        All_Users.name,
-        Active_Users.ip_address,
-        Active_Users.port,
-        Active_Users.login_time
-    ).join(All_Users)
-    # Возвращаем список кортежей
-    return query.all()
+    if username is None:
+        query = sess.query(
+            All_Users.name,
+            Active_Users.ip_address,
+            Active_Users.port,
+            Active_Users.login_time
+        ).join(All_Users)
+        # Возвращаем список кортежей
+        return query.all()
+    else:
+        query = sess.query(
+            All_Users.name,
+            Active_Users.ip_address,
+            Active_Users.port,
+            Active_Users.login_time
+        ).join(All_Users).filter(~(All_Users.name.ilike(username)))
+        # Возвращаем список кортежей
+        return query.all()
 
 
 # Функция, возвращающая историю входов по пользователю или всем пользователям
@@ -160,11 +170,12 @@ if __name__ == '__main__':
     # user = All_Users("ДжавахарлалНеру")
     # sess.add(user)
     # sess.commit()
-    # user_login('Agent_Dogget','125.126.23.56','7756')
+    user_login('Agent_Dogget','125.126.23.56','7756')
     # user_logout('Agent_Dogget')
     # print(users_list())
-    # user_login('ДжавахарлалНеру', '128.126.28.58', '7856')
-    # print(active_users_list())
-    user_logout('ДжавахарлалНеру')
     user_login('ДжавахарлалНеру', '128.126.28.58', '7856')
-    print(login_history('ДжавахарлалНеру'))
+    user_login('cli1', '128.126.28.58', '7856')
+    print(active_users_list('cli1'))
+    # user_logout('ДжавахарлалНеру')
+    # user_login('ДжавахарлалНеру', '128.126.28.58', '7856')
+    # print(login_history('ДжавахарлалНеру'))

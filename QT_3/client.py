@@ -13,7 +13,7 @@ from common.utils import get_message, send_message, valid_ip
 
 from meta_detect import CliSupervisor
 from logs.config_client_log import LOGGER
-
+from data_base import active_users_list
 
 
 
@@ -80,6 +80,12 @@ class Client_sender(threading.Thread, metaclass=CliSupervisor):
                 # Задержка неоходима, чтобы успело уйти сообщение о выходе
                 time.sleep(0.5)
                 break
+            elif command == 'active_list':
+                if not active_users_list(self.account_name):
+                    print('Вы один активный, остальные все пассивные')
+                else:
+                    for user in sorted(active_users_list(self.account_name)):
+                        print(f'Пользователь {user[0]}, подключен: {user[1]}:{user[2]}, время установки соединения: {user[3]}')
             else:
                 print('Команда не распознана, попробойте снова. help - вывести поддерживаемые команды.')
 
@@ -88,6 +94,7 @@ class Client_sender(threading.Thread, metaclass=CliSupervisor):
         print('Поддерживаемые команды:')
         print('message - отправить сообщение. Кому и текст будет запрошены отдельно.')
         print('help - вывести подсказки по командам')
+        print('active_list - вывести список доступных пользователей')
         print('exit - выход из программы')
 
 class Client_reader(threading.Thread, metaclass=CliSupervisor):
