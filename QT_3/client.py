@@ -71,9 +71,12 @@ class Client_sender(threading.Thread, metaclass=CliSupervisor):
             elif command == 'help':
                 self.print_help()
             elif command == 'exit':
-                self.send_message(self.sock, self.create_exit_message())
-                print('Завершение соединения.')
-                LOGGER.info('Завершение работы по команде пользователя.')
+                try:
+                    print('Завершение соединения.')
+                    LOGGER.info('Завершение работы по команде пользователя.')
+                    send_message(self.sock, self.create_exit_message())
+                except:
+                    pass
                 # Задержка неоходима, чтобы успело уйти сообщение о выходе
                 time.sleep(0.5)
                 break
