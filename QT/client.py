@@ -13,9 +13,33 @@ from common.utils import get_message, send_message, valid_ip
 
 from decor_2 import log
 from logs.config_client_log import LOGGER
+import easy.meta_8
 
 
-class Client_sender(threading.Thread):
+class ControlAttrName(type):
+    # Вызывается для создания экземпляра класса, перед вызовом __init__
+    def __init__(cls, future_class_name, future_class_parents, future_class_attrs):
+        """
+          Метод проверяет наличие атрибутов из списка required_attributes.
+          По умолчанию - ни один из обязательных атрибутов не найден
+          (изначально список not_found_attributes == required_attributes).
+        """
+        not_required_attributes = ['__init__', 'create_message']
+        attributes_for_warn = []
+        for attr, v in future_class_attrs.items():
+            if attr in not_required_attributes:
+                attributes_for_warn.append(attr)
+
+        if attributes_for_warn:
+            print(future_class_attrs.items())
+            raise AttributeError(f"Not found attributes: {', '.join(not_found_attributes)}")
+
+        super(ControlAttrName, cls).__init__(future_class_name,
+                                             future_class_parents,
+                                             future_class_attrs)
+
+
+class Client_sender(threading.Thread, metaclass=ControlAttrName):
     def __init__(self, account_name, sock):
         self.account_name = account_name
         self.sock = sock
