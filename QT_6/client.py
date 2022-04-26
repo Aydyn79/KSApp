@@ -1,7 +1,9 @@
 """Программа-клиент"""
 import argparse
+import os
 
-from PyQt5.QtWidgets import QApplication
+from Cryptodome.PublicKey import RSA
+from PyQt5.QtWidgets import QApplication, QMessageBox
 from client.main_window import ClientMainWindow
 from client.net_client import NetClient
 from client.start_dialog import UserNameDialog
@@ -20,6 +22,7 @@ def getParseArgv():
         parser.add_argument('-p', '--port', nargs='?', default="7777",
                             help='Укажите номер порта сервера, по умолчанию будет указан порт 7777')
         parser.add_argument('-n', '--name', default=None, nargs='?')
+        parser.add_argument('--password', default='', nargs='?')
         args = parser.parse_args()
         param_names = [param_name for param_name, _ in vars(args).items()]
 
@@ -54,39 +57,65 @@ def getParseArgv():
         sys.exit(1)
 
     client_name = args.name
-    return listen_address, listen_port, client_name
+    client_passwrd = args.password
+    return listen_address, listen_port, client_name, client_passwrd
 
 
 def main():
-    server_address, server_port, client_name = getParseArgv()
+    server_address, server_port, client_name, client_passwrd = getParseArgv()
     # Создаём клиентокое приложение
     client_app = QApplication(sys.argv)
 
-    # Если имя пользователя не было указано в командной строке, то запросим его
-    if not client_name:
+    # Если имя пользователя или пароль не было указаны в командной строке, то запрашиваем их
+    if not client_name or not client_passwrd:
         start_dialog = UserNameDialog()
         client_app.exec_()
         if start_dialog.ok_pressed:
             client_name = start_dialog.client_name.text()
-            del start_dialog
+            client_passwd = start_dialog.client_passwd.text()
+            LOGGER.debug(f'Используется имя пользователя: {client_name}, пароль: {client_passwd}')
+            # del start_dialog
         else:
             exit(0)
 
     LOGGER.info(f'Запущен клиент {client_name} с параметрами: '
                 f'адрес сервера: {server_address}, порт: {server_port}')
 
+    # Загружаем ключи с файла, если же файла нет, то генерируем новую пару.
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    key_file = os.path.join(dir_path, f'{client_name}.key')
+    if not os.path.exists(key_file):
+        keys = RSA.generate(2048, os.urandom)
+        with open(key_file, 'wb') as key:
+            key.write(keys.export_key())
+    else:
+        with open(key_file, 'rb') as key:
+            keys = RSA.import_key(key.read())
+
+    LOGGER.info('Паспорту, ключи загружены!')
+
     # Создаём объект базы данных
     db = ClientDatabase(client_name)
 
     try:
-        transport = NetClient(server_port, server_address, db, client_name)
+        transport = NetClient(
+            server_port,
+            server_address,
+            db,
+            client_name,
+            client_passwrd,
+            keys)
+        LOGGER.info('Транспорт готов Коммандор!')
     except ServerError as error:
         LOGGER.error(f'При установке соединения сервер вернул ошибку: {error.text}')
+        message = QMessageBox()
+        message.critical(start_dialog, 'Ошибка сервера', error.text)
         sys.exit(1)
     else:
         transport.setDaemon(True)
         transport.start()
 
+        del start_dialog
         # Создаём GUI
         main_window = ClientMainWindow(db, transport)
         main_window.make_connection(transport)
