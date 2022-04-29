@@ -16,7 +16,7 @@ from QT_6.common.variables import DATA, RESPONSE_511
 sys.path.append('../')
 from common.variables import PUBLIC_KEY
 from common.errors import ReqFieldMissingError
-from client_base import ClientDatabase
+from client.client_base import ClientDatabase
 from logs.config_client_log import LOGGER
 from common.utils import valid_ip, send_message, get_message
 from common.variables import ACTION, PRESENCE, TIME, USER, ACCOUNT_NAME, RESPONSE, ERROR, EXIT, MESSAGE, SENDER, \
@@ -31,8 +31,13 @@ lock_db = threading.Lock()
 
 # Класс - Транспорт, отвечает за взаимодействие с сервером
 class NetClient(threading.Thread, QObject):
+    '''
+    Класс реализующий транспортную подсистему клиентского
+    модуля. Отвечает за взаимодействие с сервером.
+    '''
     # Сигналы новое сообщение и потеря соединения
     new_msg = pyqtSignal(str)
+    message_205 = pyqtSignal()
     conn_lost = pyqtSignal()
 
     def __init__(self, port, ip_address, db, username, passwrd, keys):
@@ -68,21 +73,23 @@ class NetClient(threading.Thread, QObject):
         self.running = True
 
     def data_exchange_init(self, port, ip_address):
-        """Сообщаем о запуске"""
+        """Сообщаем о установке соединения c сервером"""
         LOGGER.info(f'Запущен клиент {self.username} с параметрами: '
                     f'адрес сервера: {ip_address}, порт: {port}')
         self.transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # Таймаут для освобождения сокета.
         self.transport.settimeout(5)
+        connection = False
         for i in range(5):
-            LOGGER.info(f"Моя попытка №{i}")
+            LOGGER.info(f"Моя попытка №{i + 1}")
             try:
                 self.transport.connect((ip_address, port))
             except (OSError, ConnectionRefusedError, ConnectionError):
-                LOGGER.info(f"Моя попытка №{i} не удалась")
+                LOGGER.info(f"Моя попытка №{i + 1} не удалась")
                 pass
             else:
                 connection = True
+                LOGGER.info(f"Соединение установленно")
                 break
             time.sleep(1)
 
@@ -96,11 +103,27 @@ class NetClient(threading.Thread, QObject):
         passwd_hash = hashlib.pbkdf2_hmac('sha512', passwrd_byte, salt, 10000)
         passwd_hash_string = binascii.hexlify(passwd_hash)
 
-        LOGGER.debug(f'Хэш-пароль сформирован: {passwd_hash_string}')
+        LOGGER.info(f'Хэш-пароль сформирован: {passwd_hash_string}')
         # Посылаем серверу приветственное сообщение и получаем ответ,
         # что всё нормально или ловим исключение.
+
+        # Получаем публичный ключ
+        pubkey = self.keys.publickey().export_key().decode('ascii')
+
+        # Го авторизоваться
+        with lock_sock:
+            presense = {
+                ACTION: PRESENCE,
+                TIME: time.time(),
+                USER: {
+                    ACCOUNT_NAME: self.username,
+                    PUBLIC_KEY: pubkey
+                }
+            }
+        LOGGER.debug(f"Приветственное сообщение = {presense}")
+
         try:
-            send_message(self.transport, self.create_presence())
+            send_message(self.transport, presense)
             answer = get_message(self.transport)
             LOGGER.info(f'Установлено соединение с сервером. Ответ сервера: {answer}')
             print(f'Установлено соединение с сервером.')
@@ -113,30 +136,32 @@ class NetClient(threading.Thread, QObject):
                     ans_data = answer[DATA]
                     hash = hmac.new(passwd_hash_string, ans_data.encode('utf-8'), 'MD5')
                     digest = hash.digest()
+                    LOGGER.info(f'Клиентский хэш {digest}')
                     my_ans = RESPONSE_511
                     my_ans[DATA] = binascii.b2a_base64(digest).decode('ascii')
+                    LOGGER.info(f'Клиентский хэш бинаскии {my_ans[DATA]}')
                     send_message(self.transport, my_ans)
                     self.process_ans(get_message(self.transport))
         except (OSError, json.JSONDecodeError) as err:
             LOGGER.debug(f'Connection error.', exc_info=err)
             raise ServerError('Сбой соединения в процессе авторизации.')
 
-    def create_presence(self):
-        # Получаем публичный ключ и декодируем его из байтов
-        pubkey = self.keys.publickey().export_key().decode('ascii')
-
-        # Авторизируемся на сервере
-        with lock_sock:
-            presense = {
-                ACTION: PRESENCE,
-                TIME: time.time(),
-                USER: {
-                    ACCOUNT_NAME: self.username,
-                    PUBLIC_KEY: pubkey
-                }
-            }
-        LOGGER.debug(f'Сформировано {PRESENCE} сообщение для пользователя {self.username}')
-        return presense
+    # def create_presence(self):
+    #     # Получаем публичный ключ и декодируем его из байтов
+    #     pubkey = self.keys.publickey().export_key().decode('ascii')
+    #
+    #     # Авторизируемся на сервере
+    #     with lock_sock:
+    #         presense = {
+    #             ACTION: PRESENCE,
+    #             TIME: time.time(),
+    #             USER: {
+    #                 ACCOUNT_NAME: self.username,
+    #                 PUBLIC_KEY: pubkey
+    #             }
+    #         }
+    #     LOGGER.info(f'Сформировано {PRESENCE} сообщение для пользователя {self.username}')
+    #     return presense
 
     def process_ans(self, message):
         '''
@@ -149,6 +174,10 @@ class NetClient(threading.Thread, QObject):
                 return '200 : OK'
             elif message[RESPONSE] == 400:
                 raise ServerError(f'400 : {message[ERROR]}')
+            elif message[RESPONSE] == 205:
+                self.user_list_update()
+                self.contacts_list_update()
+                self.message_205.emit()
             else:
                 LOGGER.error(f'Принято сообщение с неизвестным кодом: {message[RESPONSE]}')
 
@@ -161,7 +190,7 @@ class NetClient(threading.Thread, QObject):
                 and message[DESTINATION] == self.username:
             LOGGER.debug(f'Получено сообщение от пользователя {message[SENDER]}:'
                          f'{message[MESSAGE_TEXT]}')
-            self.db.save_message(message[SENDER], 'in', message[MESSAGE_TEXT])
+            # self.db.save_message(message[SENDER], 'in', message[MESSAGE_TEXT])
             self.new_msg.emit(message[SENDER])
 
         # Функция, обновляющая контакт - лист с сервера

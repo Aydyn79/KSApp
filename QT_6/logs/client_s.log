@@ -974,3 +974,125 @@ Gooogogogo
 26-04-2022 16:42:19 DEBUG    net_client.py Сформировано presence сообщение для пользователя dron
 26-04-2022 16:42:20 INFO     net_client.py Установлено соединение с сервером. Ответ сервера: {'response': 400, 'error': 'Пользователь не зарегистрирован.'}
 26-04-2022 16:42:20 ERROR    client.py   При установке соединения сервер вернул ошибку: Пользователь не зарегистрирован.
+27-04-2022 10:44:48 DEBUG    client.py   Используется имя пользователя: dfr, пароль: q
+27-04-2022 10:44:48 INFO     client.py   Запущен клиент dfr с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 10:44:51 INFO     client.py   Паспорту, ключи загружены!
+27-04-2022 10:44:51 INFO     net_client.py Запущен клиент dfr с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 10:44:51 INFO     net_client.py Моя попытка №0
+27-04-2022 10:44:51 DEBUG    net_client.py Установлено соединение с сервером
+27-04-2022 10:44:51 DEBUG    net_client.py Хэш-пароль сформирован: b'590227f24ea63669c559598621096eca6caba89df8c448dfd0c0848798e22ad524ea9b52ca7b1d6928a6f34f2d4bd43f2ea0a190d39c9782dbd29abd36d2fd10'
+27-04-2022 10:44:51 DEBUG    net_client.py Сформировано presence сообщение для пользователя dfr
+27-04-2022 10:44:51 INFO     net_client.py Установлено соединение с сервером. Ответ сервера: {'response': 511, 'binary': '4ad25aca9d9c4789f7901eeffe99637cce41271a6b0a39ad59833aa250d7f37d7d01b6c47ab25ee972236ba59e441d5e3c834130c66e2ce86a3ed8d84eb5173e'}
+27-04-2022 10:44:51 ERROR    client.py   При установке соединения сервер вернул ошибку: 400 : Неверный пароль.
+27-04-2022 10:45:18 DEBUG    client.py   Используется имя пользователя: dfr, пароль: 1
+27-04-2022 10:45:18 INFO     client.py   Запущен клиент dfr с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 10:45:18 INFO     client.py   Паспорту, ключи загружены!
+27-04-2022 10:45:18 INFO     net_client.py Запущен клиент dfr с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 10:45:18 INFO     net_client.py Моя попытка №0
+27-04-2022 10:45:18 DEBUG    net_client.py Установлено соединение с сервером
+27-04-2022 10:45:18 DEBUG    net_client.py Хэш-пароль сформирован: b'590227f24ea63669c559598621096eca6caba89df8c448dfd0c0848798e22ad524ea9b52ca7b1d6928a6f34f2d4bd43f2ea0a190d39c9782dbd29abd36d2fd10'
+27-04-2022 10:45:18 DEBUG    net_client.py Сформировано presence сообщение для пользователя dfr
+27-04-2022 10:45:19 INFO     net_client.py Установлено соединение с сервером. Ответ сервера: {'response': 511, 'binary': 'b164dd76dad065e1b26a32402b86d3593325bd466f9705db6474b6d7ebf28662041e0dd3064cbb5db5f42566370232f7f0f6c31e5dd25a015f654a48671fd787'}
+27-04-2022 10:45:19 ERROR    client.py   При установке соединения сервер вернул ошибку: 400 : Неверный пароль.
+27-04-2022 10:48:13 DEBUG    client.py   Используется имя пользователя: q, пароль: q
+27-04-2022 10:48:13 INFO     client.py   Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 10:48:14 INFO     client.py   Паспорту, ключи загружены!
+27-04-2022 10:48:14 INFO     net_client.py Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 10:48:14 INFO     net_client.py Моя попытка №0
+27-04-2022 10:48:14 DEBUG    net_client.py Установлено соединение с сервером
+27-04-2022 10:48:14 DEBUG    net_client.py Хэш-пароль сформирован: b'a9c1d2b65002fb020d4ccd891db7286ff62c7030b14a4caa567402c79f2afec7fba7cb9ab568822cea6ac967440484fb5057f9aa17dd44b5c8d049f44c56f848'
+27-04-2022 10:48:14 DEBUG    net_client.py Сформировано presence сообщение для пользователя q
+27-04-2022 10:48:15 INFO     net_client.py Установлено соединение с сервером. Ответ сервера: {'response': 511, 'binary': '9b22b5aa3cd5554a7ec41d4372a83c018d81dfb031c969aa2a4189290a2793d8cbc1f12b971345eb9f5e0132541f48a08899fddeb06ecfca44d0afb0db321989'}
+27-04-2022 10:48:15 ERROR    client.py   При установке соединения сервер вернул ошибку: 400 : Неверный пароль.
+27-04-2022 11:53:21 DEBUG    client.py   Используется имя пользователя: q, пароль: q
+27-04-2022 11:53:21 INFO     client.py   Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 11:53:21 INFO     client.py   Паспорту, ключи загружены!
+27-04-2022 11:53:21 INFO     net_client.py Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 11:53:21 INFO     net_client.py Моя попытка №1
+27-04-2022 11:53:21 INFO     net_client.py Соединение установленно
+27-04-2022 11:53:21 DEBUG    net_client.py Установлено соединение с сервером
+27-04-2022 11:53:21 INFO     net_client.py Хэш-пароль сформирован: b'a9c1d2b65002fb020d4ccd891db7286ff62c7030b14a4caa567402c79f2afec7fba7cb9ab568822cea6ac967440484fb5057f9aa17dd44b5c8d049f44c56f848'
+27-04-2022 11:53:21 DEBUG    net_client.py Приветственное сообщение = {'action': 'presence', 'time': 1651035201.698817, 'user': {'account_name': 'q', 'the_secret_of_the_Madrid_Court': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn+XbDXAsJixFnzBgwwp\nZkenkHnnVm4RI8NHfZ1yTuvJdzkVRpkiwVHMqMHAur+88pvEOsQL2b3w5kztXgXm\nDn8KMT2mi6R2Ej8jz69Tk5vBEoGOjxZAOxBkZdYc2JNQhRyOrehiRqwAxPj2+Fwr\n/w9UG0JkDkUWerXusQPCQvvolIv2QeS2vOSapNap3CznwqlB/WUJYCv0XidUTlHn\nWQff/+I2cIA22wWHeWRIvvibUy+w72CBA8OOFC6TcAwbqC2v9jYIIyRi9LH1WGAY\nb/8spunS6VLm4Ft40/fTmexYVB9PxihX3ea63IO0tiaUui64Uf031yfd0mMi79wg\nJwIDAQAB\n-----END PUBLIC KEY-----'}}
+27-04-2022 11:53:22 INFO     net_client.py Установлено соединение с сервером. Ответ сервера: {'response': 511, 'binary': 'fc674c245545742005cac2de4bcbab9b2f212837b33a980fec08062ad385b137226b9bdc653471062b1e656401b6a7fe8225cb4bd68a012150302e459222e2dd'}
+27-04-2022 11:53:22 ERROR    client.py   При установке соединения сервер вернул ошибку: 400 : Неверный пароль.
+27-04-2022 11:57:36 DEBUG    client.py   Используется имя пользователя: q, пароль: q
+27-04-2022 11:57:36 INFO     client.py   Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 11:57:36 INFO     client.py   Паспорту, ключи загружены!
+27-04-2022 11:57:37 INFO     net_client.py Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 11:57:37 INFO     net_client.py Моя попытка №1
+27-04-2022 11:57:37 INFO     net_client.py Соединение установленно
+27-04-2022 11:57:37 DEBUG    net_client.py Установлено соединение с сервером
+27-04-2022 11:57:37 INFO     net_client.py Хэш-пароль сформирован: b'a9c1d2b65002fb020d4ccd891db7286ff62c7030b14a4caa567402c79f2afec7fba7cb9ab568822cea6ac967440484fb5057f9aa17dd44b5c8d049f44c56f848'
+27-04-2022 11:57:37 DEBUG    net_client.py Приветственное сообщение = {'action': 'presence', 'time': 1651035457.0502186, 'user': {'account_name': 'q', 'the_secret_of_the_Madrid_Court': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn+XbDXAsJixFnzBgwwp\nZkenkHnnVm4RI8NHfZ1yTuvJdzkVRpkiwVHMqMHAur+88pvEOsQL2b3w5kztXgXm\nDn8KMT2mi6R2Ej8jz69Tk5vBEoGOjxZAOxBkZdYc2JNQhRyOrehiRqwAxPj2+Fwr\n/w9UG0JkDkUWerXusQPCQvvolIv2QeS2vOSapNap3CznwqlB/WUJYCv0XidUTlHn\nWQff/+I2cIA22wWHeWRIvvibUy+w72CBA8OOFC6TcAwbqC2v9jYIIyRi9LH1WGAY\nb/8spunS6VLm4Ft40/fTmexYVB9PxihX3ea63IO0tiaUui64Uf031yfd0mMi79wg\nJwIDAQAB\n-----END PUBLIC KEY-----'}}
+27-04-2022 11:57:37 INFO     net_client.py Установлено соединение с сервером. Ответ сервера: {'response': 511, 'binary': 'c09a55164a2fe6a807298a63b4abb3160059378ccbb605a89793d0df846efd02af3fdbe3350dd7b91688cea8ec2b8e6deedb5a7fee700ec10db1642695908e47'}
+27-04-2022 11:57:37 ERROR    client.py   При установке соединения сервер вернул ошибку: 400 : Неверный пароль.
+27-04-2022 11:58:45 DEBUG    client.py   Используется имя пользователя: q, пароль: q
+27-04-2022 11:58:45 INFO     client.py   Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 11:58:46 INFO     client.py   Паспорту, ключи загружены!
+27-04-2022 11:58:46 INFO     net_client.py Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 11:58:46 INFO     net_client.py Моя попытка №1
+27-04-2022 11:58:46 INFO     net_client.py Соединение установленно
+27-04-2022 11:58:46 DEBUG    net_client.py Установлено соединение с сервером
+27-04-2022 11:58:46 INFO     net_client.py Хэш-пароль сформирован: b'a9c1d2b65002fb020d4ccd891db7286ff62c7030b14a4caa567402c79f2afec7fba7cb9ab568822cea6ac967440484fb5057f9aa17dd44b5c8d049f44c56f848'
+27-04-2022 11:58:46 DEBUG    net_client.py Приветственное сообщение = {'action': 'presence', 'time': 1651035526.093985, 'user': {'account_name': 'q', 'the_secret_of_the_Madrid_Court': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn+XbDXAsJixFnzBgwwp\nZkenkHnnVm4RI8NHfZ1yTuvJdzkVRpkiwVHMqMHAur+88pvEOsQL2b3w5kztXgXm\nDn8KMT2mi6R2Ej8jz69Tk5vBEoGOjxZAOxBkZdYc2JNQhRyOrehiRqwAxPj2+Fwr\n/w9UG0JkDkUWerXusQPCQvvolIv2QeS2vOSapNap3CznwqlB/WUJYCv0XidUTlHn\nWQff/+I2cIA22wWHeWRIvvibUy+w72CBA8OOFC6TcAwbqC2v9jYIIyRi9LH1WGAY\nb/8spunS6VLm4Ft40/fTmexYVB9PxihX3ea63IO0tiaUui64Uf031yfd0mMi79wg\nJwIDAQAB\n-----END PUBLIC KEY-----'}}
+27-04-2022 12:01:01 INFO     net_client.py Установлено соединение с сервером. Ответ сервера: {'response': 511, 'binary': '3258804181bc1f1069e3f0fb21f35611035024d15e7d7d4be3b1c561f1196a8f1543fa07f8054e04036e1a6f4981b6ce86e8c878f0301576398bce50f7701f99'}
+27-04-2022 12:25:56 DEBUG    client.py   Используется имя пользователя: q, пароль: q
+27-04-2022 12:25:56 INFO     client.py   Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 12:25:56 INFO     client.py   Паспорту, ключи загружены!
+27-04-2022 12:25:56 INFO     net_client.py Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 12:25:56 INFO     net_client.py Моя попытка №1
+27-04-2022 12:25:56 INFO     net_client.py Соединение установленно
+27-04-2022 12:25:56 DEBUG    net_client.py Установлено соединение с сервером
+27-04-2022 12:25:56 INFO     net_client.py Хэш-пароль сформирован: b'a9c1d2b65002fb020d4ccd891db7286ff62c7030b14a4caa567402c79f2afec7fba7cb9ab568822cea6ac967440484fb5057f9aa17dd44b5c8d049f44c56f848'
+27-04-2022 12:25:56 DEBUG    net_client.py Приветственное сообщение = {'action': 'presence', 'time': 1651037156.6715393, 'user': {'account_name': 'q', 'the_secret_of_the_Madrid_Court': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn+XbDXAsJixFnzBgwwp\nZkenkHnnVm4RI8NHfZ1yTuvJdzkVRpkiwVHMqMHAur+88pvEOsQL2b3w5kztXgXm\nDn8KMT2mi6R2Ej8jz69Tk5vBEoGOjxZAOxBkZdYc2JNQhRyOrehiRqwAxPj2+Fwr\n/w9UG0JkDkUWerXusQPCQvvolIv2QeS2vOSapNap3CznwqlB/WUJYCv0XidUTlHn\nWQff/+I2cIA22wWHeWRIvvibUy+w72CBA8OOFC6TcAwbqC2v9jYIIyRi9LH1WGAY\nb/8spunS6VLm4Ft40/fTmexYVB9PxihX3ea63IO0tiaUui64Uf031yfd0mMi79wg\nJwIDAQAB\n-----END PUBLIC KEY-----'}}
+27-04-2022 12:25:57 INFO     net_client.py Установлено соединение с сервером. Ответ сервера: {'response': 511, 'binary': 'b82bdc4763b3171991394568bc01833b7de47968cb9976df134a5c5c0249c47910f0f8e892317b1d2152b81615a51a750076c318b887e01e2e1add45af82eb53'}
+27-04-2022 12:25:57 ERROR    client.py   При установке соединения сервер вернул ошибку: 400 : Неверный пароль.
+27-04-2022 15:47:03 DEBUG    client.py   Используется имя пользователя: q, пароль: q
+27-04-2022 15:47:03 INFO     client.py   Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 15:47:03 INFO     client.py   Паспорту, ключи загружены!
+27-04-2022 15:47:03 INFO     net_client.py Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 15:47:03 INFO     net_client.py Моя попытка №1
+27-04-2022 15:47:03 INFO     net_client.py Соединение установленно
+27-04-2022 15:47:03 DEBUG    net_client.py Установлено соединение с сервером
+27-04-2022 15:47:03 INFO     net_client.py Хэш-пароль сформирован: b'a9c1d2b65002fb020d4ccd891db7286ff62c7030b14a4caa567402c79f2afec7fba7cb9ab568822cea6ac967440484fb5057f9aa17dd44b5c8d049f44c56f848'
+27-04-2022 15:47:03 DEBUG    net_client.py Приветственное сообщение = {'action': 'presence', 'time': 1651049223.546546, 'user': {'account_name': 'q', 'the_secret_of_the_Madrid_Court': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn+XbDXAsJixFnzBgwwp\nZkenkHnnVm4RI8NHfZ1yTuvJdzkVRpkiwVHMqMHAur+88pvEOsQL2b3w5kztXgXm\nDn8KMT2mi6R2Ej8jz69Tk5vBEoGOjxZAOxBkZdYc2JNQhRyOrehiRqwAxPj2+Fwr\n/w9UG0JkDkUWerXusQPCQvvolIv2QeS2vOSapNap3CznwqlB/WUJYCv0XidUTlHn\nWQff/+I2cIA22wWHeWRIvvibUy+w72CBA8OOFC6TcAwbqC2v9jYIIyRi9LH1WGAY\nb/8spunS6VLm4Ft40/fTmexYVB9PxihX3ea63IO0tiaUui64Uf031yfd0mMi79wg\nJwIDAQAB\n-----END PUBLIC KEY-----'}}
+27-04-2022 15:47:04 INFO     net_client.py Установлено соединение с сервером. Ответ сервера: {'response': 511, 'binary': '52532f457d5f6ec9bbd8be1db7b3673a5b53336fa483e0bb8eca9059621812c5d23692dd7a5c472a99374f4d86b98ec3ed83fa8dd233411e671b0b676dbb78a8'}
+27-04-2022 15:47:09 DEBUG    net_client.py Connection error.
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\CSApp\QT_6\client\net_client.py", line 142, in data_exchange_init
+    self.process_ans(get_message(self.transport))
+  File "C:\Users\User\Desktop\CSApp\QT_6\common\utils.py", line 20, in get_message
+    encoded_response = client.recv(MAX_PACKAGE_LENGTH)
+socket.timeout: timed out
+27-04-2022 15:47:09 ERROR    client.py   При установке соединения сервер вернул ошибку: Сбой соединения в процессе авторизации.
+27-04-2022 15:53:54 DEBUG    client.py   Используется имя пользователя: q, пароль: q
+27-04-2022 15:53:54 INFO     client.py   Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 15:53:54 INFO     client.py   Паспорту, ключи загружены!
+27-04-2022 15:53:54 INFO     net_client.py Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 15:53:54 INFO     net_client.py Моя попытка №1
+27-04-2022 15:53:54 INFO     net_client.py Соединение установленно
+27-04-2022 15:53:54 DEBUG    net_client.py Установлено соединение с сервером
+27-04-2022 15:53:54 INFO     net_client.py Хэш-пароль сформирован: b'a9c1d2b65002fb020d4ccd891db7286ff62c7030b14a4caa567402c79f2afec7fba7cb9ab568822cea6ac967440484fb5057f9aa17dd44b5c8d049f44c56f848'
+27-04-2022 15:53:54 DEBUG    net_client.py Приветственное сообщение = {'action': 'presence', 'time': 1651049634.6148937, 'user': {'account_name': 'q', 'the_secret_of_the_Madrid_Court': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn+XbDXAsJixFnzBgwwp\nZkenkHnnVm4RI8NHfZ1yTuvJdzkVRpkiwVHMqMHAur+88pvEOsQL2b3w5kztXgXm\nDn8KMT2mi6R2Ej8jz69Tk5vBEoGOjxZAOxBkZdYc2JNQhRyOrehiRqwAxPj2+Fwr\n/w9UG0JkDkUWerXusQPCQvvolIv2QeS2vOSapNap3CznwqlB/WUJYCv0XidUTlHn\nWQff/+I2cIA22wWHeWRIvvibUy+w72CBA8OOFC6TcAwbqC2v9jYIIyRi9LH1WGAY\nb/8spunS6VLm4Ft40/fTmexYVB9PxihX3ea63IO0tiaUui64Uf031yfd0mMi79wg\nJwIDAQAB\n-----END PUBLIC KEY-----'}}
+27-04-2022 15:53:59 DEBUG    net_client.py Connection error.
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\CSApp\QT_6\client\net_client.py", line 127, in data_exchange_init
+    answer = get_message(self.transport)
+  File "C:\Users\User\Desktop\CSApp\QT_6\common\utils.py", line 20, in get_message
+    encoded_response = client.recv(MAX_PACKAGE_LENGTH)
+socket.timeout: timed out
+27-04-2022 15:53:59 ERROR    client.py   При установке соединения сервер вернул ошибку: Сбой соединения в процессе авторизации.
+27-04-2022 17:54:47 DEBUG    client.py   Используется имя пользователя: q, пароль: q
+27-04-2022 17:54:47 INFO     client.py   Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 17:54:47 INFO     client.py   Паспорту, ключи загружены!
+27-04-2022 17:54:47 INFO     net_client.py Запущен клиент q с параметрами: адрес сервера: 127.0.0.1, порт: 7777
+27-04-2022 17:54:47 INFO     net_client.py Моя попытка №1
+27-04-2022 17:54:47 INFO     net_client.py Соединение установленно
+27-04-2022 17:54:47 DEBUG    net_client.py Установлено соединение с сервером
+27-04-2022 17:54:47 INFO     net_client.py Хэш-пароль сформирован: b'a9c1d2b65002fb020d4ccd891db7286ff62c7030b14a4caa567402c79f2afec7fba7cb9ab568822cea6ac967440484fb5057f9aa17dd44b5c8d049f44c56f848'
+27-04-2022 17:54:47 DEBUG    net_client.py Приветственное сообщение = {'action': 'presence', 'time': 1651056887.288179, 'user': {'account_name': 'q', 'the_secret_of_the_Madrid_Court': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn+XbDXAsJixFnzBgwwp\nZkenkHnnVm4RI8NHfZ1yTuvJdzkVRpkiwVHMqMHAur+88pvEOsQL2b3w5kztXgXm\nDn8KMT2mi6R2Ej8jz69Tk5vBEoGOjxZAOxBkZdYc2JNQhRyOrehiRqwAxPj2+Fwr\n/w9UG0JkDkUWerXusQPCQvvolIv2QeS2vOSapNap3CznwqlB/WUJYCv0XidUTlHn\nWQff/+I2cIA22wWHeWRIvvibUy+w72CBA8OOFC6TcAwbqC2v9jYIIyRi9LH1WGAY\nb/8spunS6VLm4Ft40/fTmexYVB9PxihX3ea63IO0tiaUui64Uf031yfd0mMi79wg\nJwIDAQAB\n-----END PUBLIC KEY-----'}}
+27-04-2022 17:54:47 INFO     net_client.py Установлено соединение с сервером. Ответ сервера: {'response': 511, 'binary': 'b98e89553bc210e8761b26c986597e52e162f2d5f598ad333d6c56eda2276730f9a3fd8b1645aff54320dc72576d018fb9bbb0849241a24f5b1582750e5ff3a1'}
+27-04-2022 17:54:47 INFO     net_client.py Клиентский хэш b'\xbc\x023EA\x88m\x95\x1b\x84\x9a\x02\x7f\xbb\x95\xd3'
+27-04-2022 17:54:47 INFO     net_client.py Клиентский хэш бинаскии vAIzRUGIbZUbhJoCf7uV0w==
+
+27-04-2022 17:54:47 ERROR    client.py   При установке соединения сервер вернул ошибку: 400 : Неверный пароль.

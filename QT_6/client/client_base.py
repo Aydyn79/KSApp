@@ -1,9 +1,10 @@
-import sys, os
+import sys
+
 from sqlalchemy import create_engine, Table, Column, Integer, String, Text, MetaData, DateTime
 from sqlalchemy.orm import mapper, sessionmaker
 import datetime
 from sqlalchemy.ext.declarative import declarative_base
-sys.path.append('..')
+sys.path.append('../')
 from common.variables import *
 
 
@@ -54,9 +55,7 @@ class ClientDatabase:
         # каждый должен иметь свою БД.
         # Поскольку клиент мультипоточный, то необходимо отключить проверки на подключения
         # с разных потоков, иначе sqlite3.ProgrammingError
-        path = os.path.dirname(os.path.realpath(__file__))
-        filename = f'client_{name}.db3'
-        self.database_engine = create_engine(f'sqlite:///{os.path.join(path, filename)}',
+        self.database_engine = create_engine(f'sqlite:///client_{name}.db3',
                                              echo=False,
                                              pool_recycle=7200,
                                              connect_args={'check_same_thread': False})

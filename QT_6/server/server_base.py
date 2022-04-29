@@ -1,9 +1,12 @@
 import datetime
 import os
 import sys
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, DateTime, ForeignKey, Text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+
+from config_server_log import LOGGER
+
 sys.path.append('../../')
 
 
@@ -20,11 +23,15 @@ class Server_db:
         id = Column(Integer, primary_key=True)
         name = Column(String)
         login_time = Column(DateTime)
+        passwd_hash = Column('passwd_hash', String)
+        pubkey = Column('pubkey', Text)
 
-        def __init__(self, name):
+        def __init__(self, name, passwd_hash):
             self.id = None
             self.name = name
             self.login_time = datetime.datetime.now()
+            self.passwd_hash = passwd_hash
+            self.pubkey = None
 
         def __repr__(self):
             return f'<User({self.name}, last login {self.login_time})>'
@@ -107,6 +114,29 @@ class Server_db:
         self.sess.query(self.Active_Users).delete()
         self.sess.commit()
 
+    def add_user(self, name, passwd_hash):
+        """
+        Метод регистрации пользователя.
+        Принимает имя и хэш пароля, создаёт запись в таблице статистики.
+        """
+        user_row = self.All_Users(name, passwd_hash)
+        self.sess.add(user_row)
+        self.sess.commit()
+        history_row = self.Users_History(user_row.id)
+        self.sess.add(history_row)
+        self.sess.commit()
+
+    def remove_user(self, name):
+        """Метод удаляющий пользователя из базы."""
+        user = self.sess.query(self.All_Users).filter_by(name=name).first()
+        self.sess.query(self.Active_Users).filter_by(user=user.id).delete()
+        self.sess.query(self.Login_History).filter_by(name=user.id).delete()
+        self.sess.query(self.Users_Contacts).filter_by(user=user.id).delete()
+        self.sess.query(self.Users_Contacts).filter_by(contact=user.id).delete()
+        self.sess.query(self.Users_History).filter_by(user=user.id).delete()
+        self.sess.query(self.All_Users).filter_by(name=name).delete()
+        self.sess.commit()
+
     def get_hash(self, name):
         """Метод получения хэша пароля пользователя."""
         user = self.sess.query(self.All_Users).filter_by(name=name).first()
@@ -126,26 +156,33 @@ class Server_db:
 
 
     # Функция выполняющаяся при входе пользователя, записывает в базу факт входа
-    def user_login(self, username, ip_address, port):
+    def user_login(self, username, ip_address, port, key):
         print()
         print(username, ip_address, port)
         # Запрос в таблицу пользователей на наличие там пользователя с таким именем
         rez = self.sess.query(self.All_Users).filter_by(name=username)
 
         # Если имя пользователя уже присутствует в таблице, обновляем время последнего входа
+        # и проверяем корректность ключа. Если клиент прислал новый ключ,
+        # сохраняем его.
         if rez.count():
             user = rez.first()
             user.login_time = datetime.datetime.now()
-        # Если нет, то создаём нового пользователя
+            if user.pubkey != key:
+                user.pubkey = key
+        # Если нет, то исключение.
         else:
-            # Создаём экземпляр класса self.AllUsers, через который передаём данные в таблицу
-            user = self.All_Users(username)
-            self.sess.add(user)
-            # Коммит здесь нужен для того, чтобы создать нового пользователя,
-            # id которого будет использовано для добавления в таблицу активных пользователей
-            self.sess.commit()
-            user_in_history = self.Users_History(user.id)
-            self.sess.add(user_in_history)
+            LOGGER.error('Пользователь не зарегистрирован.')
+            raise ValueError('Пользователь не зарегистрирован.')
+
+            # # Создаём экземпляр класса self.AllUsers, через который передаём данные в таблицу
+            # user = self.All_Users(username)
+            # self.sess.add(user)
+            # # Коммит здесь нужен для того, чтобы создать нового пользователя,
+            # # id которого будет использовано для добавления в таблицу активных пользователей
+            # self.sess.commit()
+            # user_in_history = self.Users_History(user.id)
+            # self.sess.add(user_in_history)
 
         # Теперь можно создать запись в таблицу активных пользователей о факте входа.
         # Создаём экземпляр класса self.ActiveUsers, через который передаём данные в таблицу
